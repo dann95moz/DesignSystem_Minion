@@ -71,25 +71,26 @@ const StyledButton = styled.button.attrs<StyledButtonProps>((props) => ({
     return $variant === "primary" ? primaryStyles : secondaryStyles;
   }}
 `;
-
+type variant = "primary" | "secondary";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: "primary" | "secondary";
-  label: string;
+  variant: variant;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
+  children: string;
 }
 
 export const Button = ({
   variant,
   type,
-  label,
   startIcon,
   endIcon,
+  children,
   ...rest
 }: ButtonProps) => {
+  const sanitizedText = children && children.replace(/(<([^>]+)>)/gi, "");
   return (
     <StyledButton $variant={variant} {...rest} type={(type = "button")}>
-      {startIcon} {label} {endIcon}
+      {startIcon} {sanitizedText} {endIcon}
     </StyledButton>
   );
 };

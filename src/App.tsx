@@ -26,7 +26,7 @@ function App() {
   return (
     <ThemeProvider theme={currentTheme}>
       <Background>
-        <Button variant={variant} label="button"></Button>
+        <Button variant={variant}> texto </Button>
         <Banner
           title="title example"
           iconStatus={<IconStatus size="md" status="success" />}
