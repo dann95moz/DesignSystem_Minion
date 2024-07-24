@@ -1,25 +1,25 @@
 import type { StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { Button } from "../lib/main";
 import { ThemeProvider } from "styled-components";
 import { darkTheme } from "../lib/Themes/dark";
 import { lightTheme } from "../lib/Themes/light";
+import { Link } from "../lib/components/Link";
 import { commonArgTypes, iconsControl } from "./utils/commonControls";
 
 // Definimos un tipo para nuestros iconos
 
 const meta = {
-  title: "Example/Button",
-  component: Button,
+  title: "Example/Link",
+  component: Link,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {
     ...commonArgTypes,
-    variant: {
+    size: {
       control: "select",
-      options: ["primary", "secondary"],
+      options: ["small", "medium", "large"],
     },
     icon: iconsControl,
   },
@@ -28,28 +28,37 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const ButtonWithTheme: React.FC<any> = ({ isDarkTheme, ...props }) => {
+const LinkWithTheme: React.FC<any> = ({ isDarkTheme, ...props }) => {
   const theme = isDarkTheme ? darkTheme : lightTheme;
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ padding: "20px", backgroundColor: theme.white }}>
-        <Button {...props} />
+      <div
+        style={{ padding: "20px", width: "100%", backgroundColor: theme.white }}
+      >
+        <Link {...props} />
       </div>
     </ThemeProvider>
   );
 };
-export const Primary: Story = {
+export const Small: Story = {
   args: {
-    variant: "primary",
-    children: "Button Text",
+    size: "small",
     onClick: action("clicked"),
+    icon: "none",
+    label: "Link Text",
   },
-  render: (args) => <ButtonWithTheme {...args} />,
+  render: (args) => <LinkWithTheme {...args} />,
 };
 
-export const Secondary: Story = {
+export const Medium: Story = {
   args: {
-    ...Primary.args,
-    variant: "secondary",
+    ...Small.args,
+    size: "medium",
+  },
+};
+export const Large: Story = {
+  args: {
+    ...Small.args,
+    size: "large",
   },
 };

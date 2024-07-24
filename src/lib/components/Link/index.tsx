@@ -2,6 +2,7 @@ import { AnchorHTMLAttributes, ReactNode } from "react";
 import styled, { css } from "styled-components";
 import Styles from "../../styles/fontStyle";
 import { gap } from "../../styles/tokens/gap";
+import { IconPosition } from "../../types/IconPosition";
 type LinkSize = "small" | "medium" | "large";
 interface StyledLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   $size: LinkSize;
@@ -13,7 +14,7 @@ const StyledLink = styled.a.attrs<StyledLinkProps>((props) => ({
   gap: ${gap.xs};
   text-decoration: underline;
   align-items: center;
-  width: min-content;
+  width: max-content;
   cursor: pointer;
   color: ${(props) => props.theme.black};
   ${({ $size }) => {
@@ -52,19 +53,21 @@ const StyledLink = styled.a.attrs<StyledLinkProps>((props) => ({
 interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   size: LinkSize;
   label: string;
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
+  iconPosition?: IconPosition;
+  icon?: ReactNode;
 }
 export const Link = ({
-  startIcon,
-  endIcon,
   size,
   label,
+  iconPosition,
+  icon,
   ...rest
 }: LinkProps) => {
   return (
     <StyledLink $size={size} {...rest}>
-      {startIcon} {label} {endIcon}
+      {iconPosition === "start" && icon}
+      {label}
+      {iconPosition === "end" && icon}
     </StyledLink>
   );
 };

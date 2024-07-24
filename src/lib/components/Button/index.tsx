@@ -4,6 +4,7 @@ import { radius } from "../../styles/tokens/radius";
 import { gap } from "../../styles/tokens/gap";
 import { ButtonHTMLAttributes, ReactNode } from "react";
 import Styles from "../../styles/fontStyle";
+import { IconPosition } from "../../types/IconPosition";
 
 interface StyledButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   $variant: "primary" | "secondary";
@@ -74,23 +75,25 @@ const StyledButton = styled.button.attrs<StyledButtonProps>((props) => ({
 type variant = "primary" | "secondary";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: variant;
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
+  iconPosition?: IconPosition;
+  icon?: ReactNode;
   children: string;
 }
 
 export const Button = ({
   variant,
   type,
-  startIcon,
-  endIcon,
+  iconPosition,
+  icon,
   children,
   ...rest
 }: ButtonProps) => {
   const sanitizedText = children && children.replace(/(<([^>]+)>)/gi, "");
   return (
     <StyledButton $variant={variant} {...rest} type={(type = "button")}>
-      {startIcon} {sanitizedText} {endIcon}
+      {iconPosition === "start" && icon}
+      {sanitizedText}
+      {iconPosition === "end" && icon}
     </StyledButton>
   );
 };
