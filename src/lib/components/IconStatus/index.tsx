@@ -68,12 +68,12 @@ const IconStatus = ({ size, status }: IconStatusProps) => {
       case "info":
         return Info;
       default:
-        return null;
+        return;
     }
   })();
 
   if (!IconComponent) {
-    return null;
+    return Success;
   }
 
   return (

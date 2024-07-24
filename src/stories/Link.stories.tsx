@@ -9,7 +9,7 @@ import { commonArgTypes, iconsControl } from "./utils/commonControls";
 // Definimos un tipo para nuestros iconos
 
 const meta = {
-  title: "Example/Link",
+  title: "Components/Link",
   component: Link,
   parameters: {
     layout: "centered",

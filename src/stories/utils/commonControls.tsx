@@ -1,13 +1,9 @@
 import { AccessAlarms, AddShoppingCart, Home } from "@mui/icons-material";
+import { Link } from "../../lib/components/Link";
 
 export const disabledControl = {
   control: "boolean",
   description: "Toggle between enable and disable",
-};
-
-export const positionControl = {
-  control: "select",
-  options: ["start", "end"],
 };
 
 export const themeControl = {
@@ -24,9 +20,18 @@ export const iconsControl = {
     AddShoppingCart: <AddShoppingCart />,
   },
 };
+export const LinksControl = {
+  control: "select",
+  options: ["Example1", "Example2", "Example3", "Example4"],
+  mapping: {
+    Example1: <Link size="medium" label="Example1" href="#" />,
+    Example2: <Link size="medium" label="Example2" href="#" />,
+    Example3: <Link size="medium" label="Example3" href="#" />,
+    Example4: <Link size="medium" label="Example4" href="#" />,
+  },
+};
 export const commonArgTypes = {
   disabled: disabledControl,
-  position: positionControl,
   isDarkTheme: themeControl,
   // ... add other common controls
 };

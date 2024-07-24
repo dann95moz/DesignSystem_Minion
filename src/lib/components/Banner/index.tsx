@@ -8,10 +8,11 @@ import { Link } from "../Link";
 import IconStatus from "../IconStatus";
 import { ReactNode } from "react";
 import SanitizedText from "../TextSanitized";
-interface BannerProps {
+export interface BannerProps {
   title: string;
-  iconStatus: React.ReactElement<typeof IconStatus>;
-  links?: React.ReactElement<typeof Link>[];
+  iconStatus?: React.ReactElement<typeof IconStatus>;
+  primaryLink?: React.ReactElement<typeof Link>;
+  secondaryLink?: React.ReactElement<typeof Link>;
   dismissable?: boolean;
   children: ReactNode;
 }
@@ -26,9 +27,11 @@ const StyledBanner = styled.div`
   display: flex;
   gap: ${gap.md};
   h4 {
+    margin: 0;
     font-size: ${Styles.title_md_semibold};
   }
   p {
+    margin: 0;
     font-size: ${Styles.title_sm_regular};
   }
   .text-container {
@@ -41,7 +44,8 @@ const StyledBanner = styled.div`
 export const Banner = ({
   title,
   iconStatus,
-  links,
+  primaryLink,
+  secondaryLink,
   dismissable,
   children,
 }: BannerProps) => {
@@ -51,12 +55,13 @@ export const Banner = ({
       <div className="text-container">
         <h4>{title}</h4>
         <SanitizedText>{children}</SanitizedText>
-        <div className="links-container">
-          {links && links[0]}
-          {links && links[1]}
-        </div>
+        {(primaryLink || secondaryLink) && (
+          <div className="links-container">
+            {primaryLink}
+            {secondaryLink}
+          </div>
+        )}
       </div>
-
       {dismissable && <Close />}
     </StyledBanner>
   );
