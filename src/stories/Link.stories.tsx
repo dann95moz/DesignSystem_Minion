@@ -1,8 +1,5 @@
 import type { StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { ThemeProvider } from "styled-components";
-import { darkTheme } from "../lib/Themes/dark";
-import { lightTheme } from "../lib/Themes/light";
 import { Link } from "../lib/components/Link";
 import { commonArgTypes, iconsControl } from "./utils/commonControls";
 
@@ -28,18 +25,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const LinkWithTheme: React.FC<any> = ({ isDarkTheme, ...props }) => {
-  const theme = isDarkTheme ? darkTheme : lightTheme;
-  return (
-    <ThemeProvider theme={theme}>
-      <div
-        style={{ padding: "20px", width: "100%", backgroundColor: theme.white }}
-      >
-        <Link {...props} />
-      </div>
-    </ThemeProvider>
-  );
-};
 export const Small: Story = {
   args: {
     size: "small",
@@ -47,7 +32,6 @@ export const Small: Story = {
     icon: "none",
     label: "Link Text",
   },
-  render: (args) => <LinkWithTheme {...args} />,
 };
 
 export const Medium: Story = {

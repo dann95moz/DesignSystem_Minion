@@ -6,10 +6,6 @@ export const disabledControl = {
   description: "Toggle between enable and disable",
 };
 
-export const themeControl = {
-  control: "boolean",
-  description: "Toggle between light and dark theme",
-};
 export const iconsControl = {
   control: "select",
   options: ["none", "Home", "AccessAlarms", "AddShoppingCart"],
@@ -32,6 +28,5 @@ export const LinksControl = {
 };
 export const commonArgTypes = {
   disabled: disabledControl,
-  isDarkTheme: themeControl,
   // ... add other common controls
 };
