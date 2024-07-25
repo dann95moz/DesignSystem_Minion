@@ -53,6 +53,7 @@ export const Default: Story = {
   args: {
     title: "title",
     children: "text",
+    iconStatus: <Success />,
   },
   render: (args) => <BannerWithTheme {...args} />,
 };
